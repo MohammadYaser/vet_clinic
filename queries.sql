@@ -31,3 +31,13 @@ SELECT * FROM animals;
 
 COMMIT;
 SELECT * FROM animals;
+
+--deleting all Records
+BEGIN;
+DELETE FROM animals;
+
+--Rollback the transaction
+ROLLBACK;
+
+--Verify that the transaction was successful
+SELECT * FROM animals
