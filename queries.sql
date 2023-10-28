@@ -127,3 +127,9 @@ WHERE o.full_name = 'Jennifer Orwell' AND s.name = 'Digimon';
 SELECT a.name FROM animals a
 JOIN owners o ON a.owner_id = o.id
 WHERE o.full_name = 'Dean Winchester' AND a.escape_attempts = 0;
+
+/*Who owns the most animals?*/
+SELECT o.full_name, COUNT(a.id)FROM owners o
+JOIN animals a ON o.id = a.owner_id
+GROUP BY o.id, o.full_name ORDER BY COUNT(a.id) DESC
+LIMIT 1;
