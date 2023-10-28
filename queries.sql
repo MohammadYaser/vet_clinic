@@ -133,3 +133,21 @@ SELECT o.full_name, COUNT(a.id)FROM owners o
 JOIN animals a ON o.id = a.owner_id
 GROUP BY o.id, o.full_name ORDER BY COUNT(a.id) DESC
 LIMIT 1;
+
+
+--Who was the last animal seen by William Tatcher?
+
+SELECT
+    a.name
+FROM
+    animals a
+    JOIN visits v ON a.id = v.animals_id
+    JOIN vets ON vets.id = v.vets_id
+WHERE
+    vets.name = 'William Tatcher'
+GROUP BY
+    a.name
+ORDER BY
+    MAX(v.date_of_visit) DESC
+LIMIT
+    1;
