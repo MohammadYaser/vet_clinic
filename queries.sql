@@ -151,3 +151,15 @@ ORDER BY
     MAX(v.date_of_visit) DESC
 LIMIT
     1;
+
+--How many different animals did Stephanie Mendez see?
+SELECT
+    a.name
+FROM
+    animals a
+    JOIN visits v ON a.id = v.animals_id
+    JOIN vets ON vets.id = v.vets_id
+WHERE
+    vets.name = 'Stephanie Mendez'
+GROUP BY
+    a.name;
