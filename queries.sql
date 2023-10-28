@@ -202,3 +202,19 @@ SELECT COUNT(*) AS visits_count FROM visits v
     JOIN animals a ON v.animals_id = a.id JOIN vets ve ON v.vets_id = ve.id
     LEFT JOIN specializations s ON ve.id = s.vets_id AND a.species_id = s.species_id
     WHERE s.species_id IS NULL;
+
+
+SELECT
+    a.species_id AS recommended_specialty
+FROM
+    vets
+    JOIN visits v ON vets.id = v.vets_id
+    JOIN animals a ON a.id = v.animals_id
+WHERE
+    vets.name = 'Maisy Smith'
+GROUP BY
+    (a.species_id)
+ORDER BY
+    COUNT(a.species_id) DESC
+LIMIT
+    1;
