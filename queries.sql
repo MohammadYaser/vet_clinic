@@ -133,3 +133,88 @@ SELECT o.full_name, COUNT(a.id)FROM owners o
 JOIN animals a ON o.id = a.owner_id
 GROUP BY o.id, o.full_name ORDER BY COUNT(a.id) DESC
 LIMIT 1;
+
+
+--Who was the last animal seen by William Tatcher?
+
+SELECT
+    a.name
+FROM
+    animals a
+    JOIN visits v ON a.id = v.animals_id
+    JOIN vets ON vets.id = v.vets_id
+WHERE
+    vets.name = 'William Tatcher'
+GROUP BY
+    a.name
+ORDER BY
+    MAX(v.date_of_visit) DESC
+LIMIT
+    1;
+
+--How many different animals did Stephanie Mendez see?
+SELECT
+    a.name
+FROM
+    animals a
+    JOIN visits v ON a.id = v.animals_id
+    JOIN vets ON vets.id = v.vets_id
+WHERE
+    vets.name = 'Stephanie Mendez'
+GROUP BY
+    a.name;
+
+SELECT
+    v.name,
+    species.name AS specialties
+FROM
+    vets v
+    LEFT JOIN specializations s ON v.id = s.vet_id
+    LEFT JOIN species ON species.id = s.species _id;
+
+SELECT
+    a.name
+FROM
+    animals a
+    JOIN visits v ON a.id = v.animals_id
+    JOIN vets ON vets.id = v.vets_id
+WHERE
+    v.date_of_visit BETWEEN 'Apr 1, 2020'
+    AND 'Aug 30, 2020'
+    AND vets.name = 'Stephanie Mendez';
+
+SELECT
+    a.name
+FROM
+    animals a
+    JOIN visits v ON a.id = v.animals_id
+    JOIN vets ON vets.id = v.vets_id
+WHERE
+    vets.name = 'Maisy Smith'
+GROUP BY
+    a.name
+ORDER BY
+    MIN(v.date_of_visit)
+LIMIT
+    1;
+
+SELECT COUNT(*) AS visits_count FROM visits v
+    JOIN animals a ON v.animals_id = a.id JOIN vets ve ON v.vets_id = ve.id
+    LEFT JOIN specializations s ON ve.id = s.vets_id AND a.species_id = s.species_id
+    WHERE s.species_id IS NULL;
+
+
+SELECT
+    a.species_id AS recommended_specialty
+FROM
+    vets
+    JOIN visits v ON vets.id = v.vets_id
+    JOIN animals a ON a.id = v.animals_id
+WHERE
+    vets.name = 'Maisy Smith'
+GROUP BY
+    (a.species_id)
+ORDER BY
+    COUNT(a.species_id) DESC
+LIMIT
+    1;
