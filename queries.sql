@@ -107,3 +107,8 @@ WHERE o.full_name = 'Melody Pond';
 /*List of all animals that are pokemon (their type is Pokemon).*/
 SELECT a.name FROM animals a JOIN species s ON a.species_id = s.id
 WHERE s.name = 'Pokemon';
+
+/*List all owners and their animals, remember to include those that don't own any animal.*/
+SELECT o.full_name AS animals_owner, COALESCE(array_agg(a.name)) AS animals
+FROM owners o LEFT JOIN animals a ON o.id = a.owner_id GROUP BY o.id, o.full_name;
+
