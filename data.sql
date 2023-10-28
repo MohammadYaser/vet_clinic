@@ -25,9 +25,9 @@ VALUES
     ('Ditto', 'May 14, 2022', 22, TRUE, 4);
 
 
-    -- insert new records in owners table
+-- insert new records in owners table
 
-    INSERT INTO owners (full_name, age)
+INSERT INTO owners (full_name, age)
 VALUES
     ('Sam Smith', 34),
     ('Jennifer Orwell', 19),
@@ -35,3 +35,10 @@ VALUES
     ('Melody Pond', 77),
     ('Dean Winchester', 14),
     ('Jodie Whittaker', 38);
+
+-- insert new records in species table
+
+INSERT INTO species (name)
+VALUES
+    ('Pokemon'),
+    ('Digimon');
