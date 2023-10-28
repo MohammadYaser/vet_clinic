@@ -112,3 +112,6 @@ WHERE s.name = 'Pokemon';
 SELECT o.full_name AS animals_owner, COALESCE(array_agg(a.name)) AS animals
 FROM owners o LEFT JOIN animals a ON o.id = a.owner_id GROUP BY o.id, o.full_name;
 
+/*How many animals are there per species?*/
+SELECT s.name, COUNT(a.id)FROM species s JOIN animals a ON s.id = a.species_id
+GROUP BY s.id, s.name;
