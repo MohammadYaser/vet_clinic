@@ -35,3 +35,7 @@ ALTER TABLE animals DROP COLUMN species;
 -- Add species_id in animals table its foriegn key from species table
 
 ALTER TABLE animals ADD COLUMN species_id INTEGER REFERENCES species(id);
+
+-- Add owner_id in animals table its foriegn key from owners table
+
+ALTER TABLE animals ADD COLUMN owner_id INTEGER REFERENCES owners(id);
