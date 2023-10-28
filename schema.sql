@@ -10,3 +10,4 @@ CREATE TABLE animals (
 );
 
 ALTER TABLE animals ADD COLUMN species VARCHAR(100);
+ALTER TABLE animals ADD PRIMARY KEY (id);
