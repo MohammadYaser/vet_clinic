@@ -197,3 +197,8 @@ ORDER BY
     MIN(v.date_of_visit)
 LIMIT
     1;
+
+SELECT COUNT(*) AS visits_count FROM visits v
+    JOIN animals a ON v.animals_id = a.id JOIN vets ve ON v.vets_id = ve.id
+    LEFT JOIN specializations s ON ve.id = s.vets_id AND a.species_id = s.species_id
+    WHERE s.species_id IS NULL;
