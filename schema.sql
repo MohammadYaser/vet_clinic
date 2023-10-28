@@ -32,3 +32,6 @@ CREATE TABLE species (
 
 ALTER TABLE animals DROP COLUMN species;
 
+-- Add species_id in animals table its foriegn key from species table
+
+ALTER TABLE animals ADD COLUMN species_id INTEGER REFERENCES species(id);
