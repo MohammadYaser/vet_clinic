@@ -171,3 +171,14 @@ FROM
     vets v
     LEFT JOIN specializations s ON v.id = s.vet_id
     LEFT JOIN species ON species.id = s.species _id;
+
+SELECT
+    a.name
+FROM
+    animals a
+    JOIN visits v ON a.id = v.animals_id
+    JOIN vets ON vets.id = v.vets_id
+WHERE
+    v.date_of_visit BETWEEN 'Apr 1, 2020'
+    AND 'Aug 30, 2020'
+    AND vets.name = 'Stephanie Mendez';
